@@ -105,12 +105,10 @@ def naked_twins(values):
     Returns:
         the values dictionary with the naked twins eliminated from peers.
     """
-
     for unit in unitlist:
 
         # Find possible naked twins
         twins = [box for box in unit if len(values[box]) == 2]
-
         if len(twins) == 2 and values[twins[0]] == values[twins[1]]:
 
             # Intersect peers - Only shared peers should be modified
@@ -142,7 +140,7 @@ def reduce_puzzle(values):
         # Only Choice Rule: Every unit must contain exactly one occurrence of every number
         values = only_choice(values)
 
-        # Naked Twins Rule: Find pairs and remove from peers
+        # Naked Twins Rule: Find pairs and remove from shared peers
         values = naked_twins(values)
 
         # Check if stalled
