@@ -83,7 +83,7 @@ def eliminate(values):
         digit = values[box]
         for peer in peers[box]:
             values[peer] = values[peer].replace(digit, '')
-            assign_value(values, peer, values[peer])
+            assign_value(values, peer, values[peer])  # NOTE: This line can be commented out
     return values
 
 
@@ -93,7 +93,7 @@ def only_choice(values):
             found = [box for box in unit if digit in values[box]]
             if len(found) == 1:
                 values[found[0]] = digit
-                assign_value(values, found[0], digit)
+                assign_value(values, found[0], digit)  # NOTE: This line can be commented out
     return values
 
 
@@ -108,7 +108,7 @@ def naked_twins(values):
 
     for unit in unitlist:
 
-        # Find naked twins
+        # Find possible naked twins
         twins = [box for box in unit if len(values[box]) == 2]
 
         if len(twins) == 2 and values[twins[0]] == values[twins[1]]:
@@ -126,7 +126,7 @@ def naked_twins(values):
             for peer in common_peers:
                 if len(values[peer]) > 2:
                     values[peer] = values[peer].replace(first_digit, '').replace(second_digit, '')
-                    assign_value(values, peer, values[peer])
+                    assign_value(values, peer, values[peer])  # NOTE: This line can be commented out
 
     return values
 
@@ -200,9 +200,8 @@ def solve(grid, is_diagonal=True):
 
 
 if __name__ == '__main__':
-    #diag_sudoku_grid = '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
-    diag_sudoku_grid = '8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..'
-    display(solve(diag_sudoku_grid, False))
+    diag_sudoku_grid = '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
+    display(solve(diag_sudoku_grid))
 
     try:
         from visualize import visualize_assignments
