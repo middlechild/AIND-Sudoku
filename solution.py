@@ -78,6 +78,11 @@ def display(values):
 
 
 def eliminate(values):
+    """
+    Eliminate values.
+    Args:
+        values(dict): The sudoku in dictionary form
+    """
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
     for box in solved_values:
         digit = values[box]
@@ -88,6 +93,11 @@ def eliminate(values):
 
 
 def only_choice(values):
+    """
+    Eliminate values using only-choice rule.
+    Args:
+        values(dict): The sudoku in dictionary form
+    """
     for unit in unitlist:
         for digit in '123456789':
             found = [box for box in unit if digit in values[box]]
@@ -130,6 +140,10 @@ def naked_twins(values):
 
 
 def reduce_puzzle(values):
+    """
+    Args:
+        values(dict): The sudoku in dictionary form
+    """
     stalled = False
     while not stalled:
         solved_values_before = len([box for box in values.keys() if len(values[box]) == 1])
@@ -152,6 +166,10 @@ def reduce_puzzle(values):
 
 
 def search(values):
+    """
+    Args:
+        values(dict): The sudoku in dictionary form
+    """
     values = reduce_puzzle(values)
     if values is False:
         return False
