@@ -39,3 +39,8 @@ To visualize your solution, please only assign values to the values_dict using t
 ### Data
 
 The data consists of a text file of diagonal sudokus for you to solve.
+
+
+## Project Review
+
+[Visit this page to see the final review](https://review.udacity.com/#!/reviews/346026/shared)
